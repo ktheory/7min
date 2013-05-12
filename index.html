@@ -51,7 +51,6 @@
       function next(){
         var current = routine.shift()
         $('body').removeClass("start").removeClass("rest");
-        var current = routine.shift()
         $('#current').html(current);
         updateClock(workTime);
         setTimeout(rest, workTime * 1000);
