@@ -1,0 +1,82 @@
+<html>
+  <head>
+    <style>
+
+      body {
+        background-color: red;
+        color: ghostwhite;
+        margin 0 auto;
+        text-align: center;
+        font-family: sans-serif;
+        font-size: x-large;
+      }
+      body.rest { background-color: green; }
+      body.start { background-color: black; }
+
+      #done { display: none; }
+    </style>
+  </head>
+  <body class="start">
+
+    <div id="current">
+      <a id="start" onclick="next()">
+        Start
+      </a>
+    </div>
+
+
+    <div id="done">Good job!</div>
+
+    <div id="timer"></div>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+    <script>
+      var routine = [
+        'Jumping jacks',
+        'Wall sit',
+        'Push-ups',
+        'Crunches',
+        'Chair steps',
+        'Squat',
+        'Tricep dips',
+        'Plank',
+        'High knees',
+        'Lunges',
+        'Push-ups + rotation',
+        'Side plank'
+        ];
+
+      var workTime = 30, restTime = 10; timer = null;
+
+      function next(){
+        var current = routine.shift()
+        $('body').removeClass("start").removeClass("rest");
+        var current = routine.shift()
+        $('#current').html(current);
+        updateClock(workTime);
+        setTimeout(rest, workTime * 1000);
+      };
+
+      function rest(){
+        $('body').addClass("rest");
+        var upNext = routine[0];
+        if (upNext != null) {
+          $('#current').html("Rest. Next: " + upNext);
+          updateClock(restTime);
+          setTimeout(next, restTime * 1000);
+        } else {
+          $('#timer').hide();
+          $('#current').html("Good job!")
+        }
+      };
+
+      function updateClock(n){
+        $('#timer').show().html(n);
+        if (n > 1) {
+          setTimeout(function() { updateClock(n-1); }, 1000);
+        }
+      };
+
+    </script>
+  </body>
+</html>
