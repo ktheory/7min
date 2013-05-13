@@ -32,6 +32,9 @@
     </div>
 
     <div id="timer"></div>
+    <audio id="ding">
+      <source src="glass.aiff" />
+    </audio>
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
     <script>
@@ -53,6 +56,7 @@
       var workTime = 30, restTime = 10; timer = null;
 
       function next(){
+        document.getElementById('ding').play();
         var current = routine.shift()
         $('body').removeClass("start").removeClass("rest");
         $('#current').html(current);
@@ -64,6 +68,7 @@
         $('body').addClass("rest");
         var upNext = routine[0];
         if (upNext != null) {
+          document.getElementById('ding').play();
           $('#current').html('Rest. ' + upNext + ' next.');
           updateClock(restTime);
           setTimeout(next, restTime * 1000);
