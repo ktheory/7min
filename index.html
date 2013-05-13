@@ -1,31 +1,35 @@
 <html>
   <head>
+    <title>7 minute workout timer</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <meta name="viewport" content="width = device-width, initial-scale = 1, user-scalable = no" />
     <style>
 
       body {
-        background-color: red;
+        background-color: #8b0000;
         color: ghostwhite;
         margin 0 auto;
+        padding-top: 1em;
         text-align: center;
         font-family: sans-serif;
-        font-size: x-large;
+        font-size: xx-large;
+        font-weight: bold;
       }
-      body.rest { background-color: green; }
-      body.start { background-color: black; }
+      body.rest { background-color: #006400; }
+      body.start { background-color: #000; }
 
-      #done { display: none; }
+      .next { font-size: large; }
+
+      #start { cursor: pointer; }
     </style>
   </head>
   <body class="start">
 
     <div id="current">
       <a id="start" onclick="next()">
-        Start
+        Start ▶
       </a>
     </div>
-
-
-    <div id="done">Good job!</div>
 
     <div id="timer"></div>
 
@@ -60,7 +64,7 @@
         $('body').addClass("rest");
         var upNext = routine[0];
         if (upNext != null) {
-          $('#current').html("Rest. Next: " + upNext);
+          $('#current').html('Rest. ' + upNext + ' next.');
           updateClock(restTime);
           setTimeout(next, restTime * 1000);
         } else {
